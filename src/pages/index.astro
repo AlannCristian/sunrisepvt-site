@@ -26,7 +26,7 @@ const categories = ['Todas', ...new Set(gallery.map(photo => photo.category))];
       <nav id="nav-links" aria-label="Navegação principal">
         {links.map(([id,label]) => <a href={`#${id}`}>{label}</a>)}
       </nav>
-      <a class="button primary nav-cta" href="#agenda">Próxima festa <span aria-hidden="true">↗</span></a>
+      <a class="button primary nav-cta" href="#agenda">Próxima festa <svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13 13 3M5 3h8v8"/></svg></a>
     </div>
   </header>
   <main id="principal">
@@ -37,7 +37,7 @@ const categories = ['Todas', ...new Set(gallery.map(photo => photo.category))];
         <h1 id="hero-title">Onde a noite<br/> se encontra com<br/> <em>o amanhecer.</em></h1>
         <p class="intro">Quatro amigos, quatro DJs. Música eletrônica e festas que atravessam a noite até as primeiras luzes.</p>
         <div class="actions">
-          <a class="button primary" href="#agenda">Ver agenda e flyers <span aria-hidden="true">↗</span></a>
+          <a class="button primary" href="#agenda">Ver agenda e flyers <svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13 13 3M5 3h8v8"/></svg></a>
           <a class="button secondary" href="#sets"><span aria-hidden="true">▷</span> Ouvir sets</a>
         </div>
       </div>
@@ -57,7 +57,7 @@ const categories = ['Todas', ...new Set(gallery.map(photo => photo.category))];
             <div class="card-body">
               <p class="eyebrow">Em breve</p><h3>{event.name}</h3>
               <p>{event.description}</p>
-              <button class="text-button" type="button" data-dialog={`flyer-${index}`}>Ver flyer <span aria-hidden="true">↗</span></button>
+              <button class="text-button" type="button" data-dialog={`flyer-${index}`}>Ver flyer <svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13 13 3M5 3h8v8"/></svg></button>
             </div>
             <dialog id={`flyer-${index}`} aria-label={event.name}>
               <form method="dialog"><button class="button secondary close" aria-label="Fechar flyer">×</button></form>
@@ -103,7 +103,7 @@ const categories = ['Todas', ...new Set(gallery.map(photo => photo.category))];
         </div>
         <div class="gallery-grid" id="gallery-results">
           {gallery.map((photo,index) => <figure data-category={photo.category}>
-            <button type="button" data-dialog={`photo-${index}`} aria-label={`Ampliar: ${photo.title}`}><img src={photo.src} alt="" loading="lazy"/><span>{photo.title} ↗</span></button>
+            <button type="button" data-dialog={`photo-${index}`} aria-label={`Ampliar: ${photo.title}`}><img src={photo.src} alt="" loading="lazy"/><span>{photo.title}</span></button>
             <dialog id={`photo-${index}`} aria-label={photo.title}>
               <form method="dialog"><button class="button secondary close" aria-label="Fechar foto">×</button></form>
               <img src={photo.src} alt={photo.title} loading="lazy"/><p class="dialog-caption">{photo.title}</p>
@@ -126,7 +126,7 @@ const categories = ['Todas', ...new Set(gallery.map(photo => photo.category))];
         </div>
         <label>Tipo de contratação<select name="tipo"><option>DJ set individual</option><option>Line-up completo (4 DJs)</option><option>Produção ou parceria</option></select></label>
         <label>Mensagem<textarea name="mensagem" rows="4" maxlength="2000" required></textarea></label>
-        <button type="submit" disabled class="button primary">{bookingEmail ? 'Preparar e-mail' : 'Simular proposta'} <span aria-hidden="true">↗</span></button>
+        <button type="submit" disabled class="button primary">{bookingEmail ? 'Preparar e-mail' : 'Simular proposta'} <svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13 13 3M5 3h8v8"/></svg></button>
         <p class="note" role="status"></p>
       </form>
     </section>

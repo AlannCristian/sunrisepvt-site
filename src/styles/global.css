@@ -98,3 +98,5 @@ input,select,textarea{width:100%;min-width:0;padding:.65rem;border:1px solid var
   .hero::after{background:linear-gradient(90deg,#0b0813e6,#0b08136b),linear-gradient(0deg,var(--night),transparent 70%)}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+
+.text-button svg{display:inline-block;vertical-align:middle;margin-inline-start:.25rem}
