@@ -1,0 +1,21 @@
+---
+const { id } = Astro.props;
+---
+<a class="brand" href="#inicio" aria-label="SunRisepvt, início">
+  <svg viewBox="0 0 72 40" aria-hidden="true">
+    <defs>
+      <linearGradient id={`sun-${id}`} x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop stop-color="#ffb800"/><stop offset=".45" stop-color="#ff5e36"/><stop offset="1" stop-color="#9d4edd"/>
+      </linearGradient>
+      <mask id={`bars-${id}`}>
+        <rect width="72" height="40" fill="white"/>
+        <rect class="bar" x="15" y="25" width="8" height="15"/>
+        <rect class="bar" x="26" y="17" width="8" height="23"/>
+        <rect class="bar" x="37" y="11" width="8" height="29"/>
+        <rect class="bar" x="48" y="22" width="8" height="18"/>
+      </mask>
+    </defs>
+    <path d="M2 38 A34 34 0 0 1 70 38Z" fill={`url(#sun-${id})`} mask={`url(#bars-${id})`}/>
+  </svg>
+  <span>SunRise<span class="accent">pvt</span></span>
+</a>
