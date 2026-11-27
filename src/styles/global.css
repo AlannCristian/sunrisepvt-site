@@ -40,7 +40,6 @@ em{font-style:normal;color:var(--amber);background:linear-gradient(100deg,#ff704
 .intro,.section-intro{color:var(--muted);line-height:1.7;max-width:34rem;margin-top:1.2rem}
 .actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.6rem}
 .genres,.band,.footer{border-block:1px solid var(--line);background:#100b1a}
-.genres .shell{display:flex;flex-wrap:wrap;justify-content:space-around;gap:.75rem;padding-block:1rem;font-size:.7rem;letter-spacing:.13em;color:var(--muted)}
 .section{padding-block:clamp(3.5rem,5vw,5rem)}
 h2{font-size:clamp(1.9rem,3.2vw,2.3rem);line-height:1.06;letter-spacing:-.045em;font-weight:800;margin-top:.55rem}
 h3{font-size:1.28rem;font-weight:750}
@@ -113,11 +112,36 @@ input,select,textarea{width:100%;min-width:0;padding:.65rem;border:1px solid var
   letter-spacing: .14em;
   text-transform: uppercase;
 }
-.genres .shell { min-height: 4.5rem; align-items: center; }
-.genres span + span::before {
-  content: "✳";
-  color: var(--orange);
-  margin-inline-end: clamp(.5rem, 2vw, 2rem);
+.genres { background: var(--night); }
+.genres .shell {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  align-items: stretch;
+  min-height: 4.5rem;
+  color: var(--muted);
+  font-size: .7rem;
+  font-weight: 600;
+}
+.genres .shell > span {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: .6rem .5rem;
+  text-align: center;
+}
+.genres .shell > span + span::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: .875rem;
+  height: .875rem;
+  transform: translate(-50%, -50%);
+  background: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 2v12M2 8h12M3.75 3.75l8.5 8.5m0-8.5-8.5 8.5' fill='none' stroke='%23ff5e36' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+@media (max-width: 42rem) {
+  .genres .shell { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .genres .shell > span:nth-child(4)::before { display: none; }
 }
 .band { background: var(--night); }
 .section > .eyebrow::before, .booking > div > .eyebrow::before {
@@ -303,7 +327,6 @@ input,select,textarea{width:100%;min-width:0;padding:.65rem;border:1px solid var
 }
 @media (max-width: 36rem) {
   .set-list { grid-template-columns: minmax(0,1fr); }
-  .genres .shell { justify-content: center; }
 }
 @media (prefers-reduced-motion: reduce) {
   .event-card:hover, .event-card:hover .flyer-button img, .flyer-button:focus-visible img,
