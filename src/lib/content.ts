@@ -42,24 +42,29 @@ export function isTicketLink(value?: string) {
   }
 }
 
-export async function loadContent() {
-  const projectId = import.meta.env.SANITY_PROJECT_ID?.trim();
+export async function loadContent(): Promise<PortalContent & { isDemo: boolean; unavailable: boolean }> {
+  const projectId = import.meta.env.SANITY_PROJECT_ID?.trim() || 'zfvjvh1j';
   const dataset = import.meta.env.SANITY_DATASET?.trim() || 'production';
 
-  if (!projectId) return { events: events as PortalEvent[], sets, gallery: gallery as PortalPhoto[], isDemo: true };
   if (!/^[a-z0-9]+$/.test(projectId) || !/^[a-z0-9_-]+$/.test(dataset)) {
     throw new Error('Confira SANITY_PROJECT_ID e SANITY_DATASET.');
   }
 
   const url = new URL(`https://${projectId}.api.sanity.io/v2026-03-01/data/query/${dataset}`);
   url.search = new URLSearchParams({ query, perspective: 'published' }).toString();
-  const response = await fetch(url, { signal: AbortSignal.timeout(10000) });
-  if (!response.ok) throw new Error(`Não foi possível consultar o Sanity (HTTP ${response.status}).`);
+  try {
+    const response = await fetch(url, { signal: AbortSignal.timeout(10000) });
+    if (!response.ok) throw new Error(`Sanity HTTP ${response.status}`);
 
-  const { result } = await response.json() as { result: PortalContent };
-  return {
-    ...result,
-    sets: result.sets.map(set => ({ ...set, embed: soundCloudPlayer(set.embed) })),
-    isDemo: false,
-  };
+    const { result } = await response.json() as { result: PortalContent };
+    return {
+      ...result,
+      sets: result.sets.map(set => ({ ...set, embed: soundCloudPlayer(set.embed) })),
+      isDemo: false,
+      unavailable: false,
+    };
+  } catch (error) {
+    console.error('Falha ao consultar o conteúdo publicado do Sanity.', error);
+    return { events: [], sets: [], gallery: [], isDemo: false, unavailable: true };
+  }
 }

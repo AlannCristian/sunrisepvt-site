@@ -26,3 +26,5 @@ pnpm-debug.log*
 # Sanity Studio generated files
 studio/.sanity/
 studio/.env.local
+
+.vercel/

@@ -41,11 +41,10 @@ npm run dev
 
 No PowerShell, use `npm.cmd ci` e `npm.cmd run dev` se o comando `npm` estiver indisponível. Abra o endereço exibido no terminal, normalmente `http://localhost:4321`.
 
-Para gerar e revisar a versão de produção localmente:
+Para conferir o build da versão de produção:
 
 ```bash
 npm run build
-npm run preview
 ```
 
 ## Estrutura
@@ -59,7 +58,7 @@ npm run preview
 | [`src/styles/global.css`](src/styles/global.css) | Paleta, layout, animações e adaptação para telas menores |
 | [`public/media/`](public/media/) | Imagens públicas do portal |
 
-A base é **Astro, TypeScript e Tailwind CSS**. O Astro gera o HTML no build, o CSS cuida das animações e o JavaScript executado no navegador controla menu, filtros, modais, seleção de sets e formulário.
+A base é **Astro, TypeScript e Tailwind CSS**. O Astro renderiza o HTML no servidor, o CSS cuida das animações e o JavaScript executado no navegador controla menu, filtros, modais, seleção de sets e formulário.
 
 ## Atualizando o conteúdo
 
@@ -85,7 +84,7 @@ A base é **Astro, TypeScript e Tailwind CSS**. O Astro gera o HTML no build, o 
 
 ## Publicação na Vercel
 
-Importe o repositório com o preset **Astro**, use `npm run build` como comando de build e `dist/` como pasta de saída. A branch principal deste repositório é a **`master`**. Use-a como branch de produção do projeto na Vercel.
+Importe o repositório com o preset **Astro**, use `npm run build` como comando de build e mantenha a pasta de saída padrão do preset. A branch principal deste repositório é a **`master`**. Use-a como branch de produção do projeto na Vercel.
 
 ---
 
@@ -94,44 +93,23 @@ Desenvolvimento por **AO Dev**.
 ## Painel de conteúdo com Sanity
 
 O Studio em `studio/` permite cadastrar **Eventos e flyers**, **Sets** e
-**Galeria**. O Astro consulta somente documentos publicados durante o build.
-Com o Sanity habilitado, as três seções exibem o conteúdo publicado no painel.
-Se não houver documentos, exibem mensagens de lista vazia. Preencha o painel
-antes de conectar a produção.
+**Galeria** no projeto `zfvjvh1j`, dataset público `production`. Copie
+`studio/.env.example` para `studio/.env`, informe o ID do projeto e execute:
 
-### Configuração inicial
-
-1. Crie um projeto no [Sanity Manage](https://www.sanity.io/manage) e anote o
-   **Project ID**. Use um dataset público, como `production`, para esse conteúdo
-   público do portal.
-2. Copie `studio/.env.example` para `studio/.env` e preencha
-   `SANITY_STUDIO_PROJECT_ID` e `SANITY_STUDIO_DATASET`.
-3. Na raiz do repositório, rode `npm.cmd --prefix studio install` e
-   `npm.cmd --prefix studio run dev` no Windows. No macOS/Linux, use `npm`.
-   Abra o endereço exibido e entre com sua conta Sanity.
-4. Cadastre e publique pelo menos um evento, um set e uma foto para testar.
-   Em Sets, cole o endereço `src` de **Compartilhar → Incorporar** no SoundCloud.
-5. Copie `.env.example` para `.env` na raiz e preencha `SANITY_PROJECT_ID`
-   e `SANITY_DATASET` com os mesmos valores. Rode `npm.cmd run build` para
-   verificar a integração.
-
-Os valores de Project ID e dataset identificam o projeto. O site não precisa
-de token de escrita. Se o Sanity estiver configurado e a consulta falhar, o
-build falha para preservar o último deploy bem-sucedido.
-
-### Publicação na Vercel
-
-Adicione `SANITY_PROJECT_ID` e `SANITY_DATASET` às variáveis do ambiente
-desejado e faça um novo deploy. Após conferir em Preview, use os mesmos valores
-na produção. Para automatizar, crie um **Deploy Hook** da Vercel para a branch
-`master` e use a URL em um webhook do Sanity para criação, atualização e
-exclusão de documentos publicados, com este filtro:
-
-```groq
-_type in ["portalEvent", "portalSet", "portalPhoto"] &&
-!(_id in path("drafts.**"))
+```powershell
+npm.cmd --prefix studio ci
+npm.cmd --prefix studio run dev
 ```
 
-Mantenha a URL do Deploy Hook fora do repositório. Para disponibilizar o Studio
-fora do seu PC, execute o script `deploy` de `studio/` após fazer login no
-Sanity CLI.
+Abra o endereço exibido, entre no Sanity e clique em **Publicar** ao concluir
+um cadastro. Na próxima visita ou ao recarregar o portal, a página consulta
+o conteúdo publicado. Se uma seção estiver vazia, exibe uma mensagem.
+
+### Publicação do portal
+
+O adaptador `@astrojs/vercel` gera `.vercel/output` com a função que renderiza
+a página. Use o preset **Astro**, o comando `npm run build` e o diretório de
+saída padrão do preset. Remova uma eventual configuração manual de saída
+`dist`. O Project ID e o dataset podem ser sobrescritos com
+`SANITY_PROJECT_ID` e `SANITY_DATASET`. O portal consulta a API pública do
+Sanity no servidor, sem token ou webhook.
