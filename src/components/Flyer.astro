@@ -1,9 +1,16 @@
 ---
+import { events } from "../data/portal";
+
+interface Props {
+  event: (typeof events)[number];
+}
 const { event } = Astro.props;
 ---
 <div class="flyer" style={`--flyer-color:${event.color}`}>
-  <span>SUNRISEPVT</span>
-  <i aria-hidden="true"></i>
-  <strong>{event.name}</strong>
-  <small>{event.genre}</small>
+  <img src={event.cover} alt="" loading="lazy"/>
+  <span class="flyer-status">Em breve</span>
+  <div class="flyer-title">
+    <strong>{event.headline}</strong>
+    <small>{event.edition}</small>
+  </div>
 </div>

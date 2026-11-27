@@ -35,14 +35,14 @@ nav a:hover{color:var(--amber)}
 .hero-label{display:inline-flex;align-items:center;gap:.45rem;flex-wrap:wrap;border:1px solid #ff704e66;border-radius:.3rem;background:#0b0813b0;padding:.6rem .75rem}
 .hero-label i{width:.42rem;height:.42rem;border-radius:50%;background:#00f5d4;box-shadow:0 0 11px #00f5d4}
 h1,h2,h3,.brand{font-family:"Chakra Petch",system-ui,sans-serif}
-h1{font-size:clamp(2.35rem,7vw,5.4rem);line-height:1.03;letter-spacing:-.055em;font-weight:800;margin-top:1.25rem}
+h1{font-size:clamp(2.35rem,5.25vw,4.1rem);line-height:1.08;letter-spacing:-.055em;font-weight:800;margin-top:1.25rem}
 em{font-style:normal;color:var(--amber);background:linear-gradient(100deg,#ff704e,#ffb800);background-clip:text;-webkit-text-fill-color:transparent}
 .intro,.section-intro{color:var(--muted);line-height:1.7;max-width:34rem;margin-top:1.2rem}
 .actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.6rem}
 .genres,.band,.footer{border-block:1px solid var(--line);background:#100b1a}
 .genres .shell{display:flex;flex-wrap:wrap;justify-content:space-around;gap:.75rem;padding-block:1rem;font-size:.7rem;letter-spacing:.13em;color:var(--muted)}
-.section{padding-block:clamp(3.75rem,8vw,7rem)}
-h2{font-size:clamp(2rem,5vw,3.7rem);line-height:1.06;letter-spacing:-.045em;font-weight:800;margin-top:.55rem}
+.section{padding-block:clamp(3.5rem,5vw,5rem)}
+h2{font-size:clamp(1.9rem,3.2vw,2.3rem);line-height:1.06;letter-spacing:-.045em;font-weight:800;margin-top:.55rem}
 h3{font-size:1.28rem;font-weight:750}
 .event-grid,.dj-grid,.gallery-grid,.set-grid,.booking{display:grid;gap:1rem}
 .event-grid,.dj-grid,.set-grid,.gallery-grid{margin-top:2rem}
@@ -52,19 +52,11 @@ h3{font-size:1.28rem;font-weight:750}
 .card-body,.set-panel,.booking-form{padding:1.25rem}
 .card-body p:not(.eyebrow),.set-panel p:not(.eyebrow),.note{color:var(--muted);font-size:.9rem;margin-top:.5rem}
 .flyer-button{display:block;width:100%;cursor:zoom-in}
-.flyer{position:relative;display:grid;align-content:space-around;justify-items:center;min-height:13rem;overflow:hidden;padding:1.2rem;isolation:isolate;text-align:center;background:radial-gradient(ellipse at center,color-mix(in srgb,var(--flyer-color),#10051c 65%),#10051c 68%);border-radius:1rem 1rem 0 0}
-.flyer span,.flyer small{letter-spacing:.18em;font-size:.68rem}
-.flyer strong{font-size:clamp(1.25rem,3vw,2.1rem);line-height:1.1;text-transform:uppercase}
-.flyer i{width:5.5rem;aspect-ratio:1;border-radius:50%;border:2px solid var(--flyer-color);box-shadow:0 0 35px var(--flyer-color),inset 0 0 18px var(--flyer-color);margin:.9rem}
 .text-button{color:var(--amber);margin-top:.9rem;cursor:pointer}
-.dj img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 25%;border-radius:1rem 1rem 0 0}
-.set-grid,.booking{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:1.5rem}
-.set-list,.booking-form{display:grid;gap:.65rem}
-.set-button{display:flex;align-items:center;gap:.8rem;padding:.75rem 1rem;text-align:left;cursor:pointer}
-.set-button small{display:block;color:var(--muted)}
+.booking{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:1.5rem}
+.booking-form{display:grid;gap:1rem}
+.set-button{display:block;overflow:hidden;text-align:left;cursor:pointer}
 .set-button[aria-pressed=true],.chip[aria-pressed=true]{border-color:var(--orange);background:#2a1630}
-.set-panel{display:grid;align-content:center;justify-items:center;text-align:center;background:radial-gradient(ellipse at top,#3a1b49,var(--surface) 70%)}
-.record{width:5.5rem;aspect-ratio:1;border-radius:50%;margin-bottom:1rem;background:radial-gradient(circle,#ff704e 0 10%,#211132 11% 22%,transparent 23%),repeating-radial-gradient(circle,#271535 0 4px,#51345e 5px 6px);border:1px solid #80528b}
 iframe{width:100%;min-height:180px;border:0;margin-top:1rem}
 .filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.25rem}
 .chip{border:1px solid var(--line);border-radius:99px;padding:.5rem .8rem;cursor:pointer}
@@ -100,3 +92,220 @@ input,select,textarea{width:100%;min-width:0;padding:.65rem;border:1px solid var
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
 
 .text-button svg{display:inline-block;vertical-align:middle;margin-inline-start:.25rem}
+
+/* Opening details and section rhythm */
+.hero-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 1.5rem;
+  margin-top: 2rem;
+  color: var(--muted);
+  font-size: .76rem;
+}
+.hero-details span,
+.hero-scroll span { color: var(--orange); margin-inline: .25rem; }
+.hero-scroll {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.75rem;
+  color: var(--muted);
+  font-size: .62rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.genres .shell { min-height: 4.5rem; align-items: center; }
+.genres span + span::before {
+  content: "✳";
+  color: var(--orange);
+  margin-inline-end: clamp(.5rem, 2vw, 2rem);
+}
+.band { background: var(--night); }
+.section > .eyebrow::before, .booking > div > .eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 2px;
+  margin-inline-end: .5rem;
+  vertical-align: middle;
+  background: var(--orange);
+}
+
+/* Event posters and artist portraits */
+.event-grid, .dj-grid { gap: 1.35rem; }
+.event-card {
+  border-radius: .75rem;
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+.event-card:focus-within {
+  border-color: var(--orange);
+}
+.flyer {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-content: end;
+  min-height: clamp(12rem, 19vw, 15rem);
+  padding: 1.25rem;
+  overflow: hidden;
+  border-radius: .7rem .7rem 0 0;
+  background: var(--surface);
+  text-align: left;
+}
+.flyer img, .flyer::after {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.flyer img { object-fit: cover; transition: transform .45s ease; }
+.flyer::after {
+  content: "";
+  background: linear-gradient(0deg, #08040def 4%, transparent 73%),
+    linear-gradient(125deg, color-mix(in srgb, var(--flyer-color), transparent 78%), transparent);
+}
+.flyer-status {
+  position: absolute;
+  top: .9rem;
+  right: .9rem;
+  padding: .25rem .5rem;
+  border: 1px solid #ffb80070;
+  border-radius: .3rem;
+  background: #0b0813df;
+  color: var(--amber);
+  font-size: .68rem;
+}
+.flyer-title strong {
+  display: block;
+  max-width: 11ch;
+  font: 700 clamp(1.45rem, 2.65vw, 2.15rem)/1.03 "Chakra Petch", sans-serif;
+  text-transform: uppercase;
+}
+.flyer-title small {
+  display: block;
+  margin-top: .55rem;
+  font-size: .65rem;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+}
+.event-card .text-button {
+  display: block;
+  width: 100%;
+  padding-top: .85rem;
+  border-top: 1px solid var(--line);
+  color: var(--orange);
+  text-align: right;
+  font-size: .82rem;
+}
+.dj { min-width: 0; border-bottom: 1px solid var(--line); }
+.dj-portrait {
+  overflow: hidden;
+  border-radius: .55rem;
+  background: var(--surface);
+}
+.dj-portrait img {
+  width: 100%;
+  aspect-ratio: 7/8;
+  object-fit: cover;
+  object-position: center 19%;
+  transition: transform .45s ease, filter .35s ease;
+}
+.dj .card-body { padding: .9rem 0; }
+.dj .card-body p:not(.eyebrow) { color: var(--orange); }
+.dj h3 { transition: color .25s ease; }
+@media (hover: hover) {
+  .event-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--orange);
+    box-shadow: 0 10px 28px #ff5e3624;
+  }
+  .event-card:hover .flyer-button img, .flyer-button:focus-visible img { transform: scale(1.06); }
+  .dj:hover img { transform: scale(1.075); filter: brightness(1.14); }
+  .dj:hover h3 { color: var(--orange); }
+}
+
+/* Set artwork and selected-set display */
+.set-grid { grid-template-columns: minmax(0, 1fr); }
+.set-list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+.set-cover { display: block; position: relative; isolation: isolate; overflow: hidden; }
+.set-cover img {
+  width: 100%;
+  aspect-ratio: 2.25/1;
+  object-fit: cover;
+  transition: transform .35s ease;
+}
+.set-cover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, var(--surface), transparent 95%);
+}
+.set-play {
+  position: absolute;
+  left: 1rem;
+  bottom: .25rem;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 2.3rem;
+  height: 2.3rem;
+  border: 1px solid #ffffff66;
+  border-radius: 50%;
+  background: #0b0813ad;
+}
+.set-button[aria-pressed=true] .set-play { background: #ff662b; color: var(--night); }
+.set-button:hover .set-cover img { transform: scale(1.06); }
+.set-info { display: block; padding: .65rem 1rem 1.15rem; }
+.set-info small { display: block; color: var(--muted); margin-top: .3rem; }
+.set-panel {
+  display: grid;
+  align-items: center;
+  grid-template-columns: auto minmax(0,1fr) auto;
+  gap: 1rem;
+  border-width: 1px 0;
+  border-radius: 0;
+  background: none;
+}
+.set-panel .note { margin: 0; }
+.set-panel iframe { grid-column: 1/-1; }
+.waveform { display: flex; align-items: center; gap: 3px; height: 2.6rem; overflow: hidden; }
+.waveform i { flex: 1 0 2px; height: var(--bar-height); border-radius: 3px; background: var(--violet); }
+.waveform i:nth-child(3n) { background: var(--orange); }
+
+/* Contact and developer credit */
+.booking { gap: clamp(1.5rem,5vw,4rem); }
+.booking-options { display: grid; gap: .65rem; margin: 1.4rem 0; }
+.booking-options li::before { content: "♪"; color: var(--orange); margin-inline-end: .75rem; }
+.booking-form { border: 0; background: transparent; padding: 0; }
+.booking-form label { gap: .45rem; }
+.booking-form input, .booking-form select, .booking-form textarea { background: var(--surface); }
+.booking-form [role=status]:empty { display: none; }
+.footer-content { padding-block: 2.5rem; }
+.footer-content p { margin-top: .65rem; }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .75rem 1rem;
+  padding-block: 1.2rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .78rem;
+}
+.developer-credit { display: flex; align-items: center; gap: .55rem; }
+.developer-credit strong { color: #f3f4f6; }
+.developer-credit img { width: auto; max-width: 7rem; max-height: 1.85rem; object-fit: contain; }
+@media (max-width: 56rem) {
+  .set-list { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .set-panel { grid-template-columns: minmax(0,1fr); }
+  .hero-scroll { display: none; }
+}
+@media (max-width: 36rem) {
+  .set-list { grid-template-columns: minmax(0,1fr); }
+  .genres .shell { justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .event-card:hover, .event-card:hover .flyer-button img, .flyer-button:focus-visible img,
+  .dj:hover img, .set-button:hover .set-cover img, .gallery-grid figure button:hover img { transform: none; }
+}

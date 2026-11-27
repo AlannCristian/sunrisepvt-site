@@ -5,7 +5,7 @@ import "@fontsource/inter/600.css";
 import "../styles/global.css";
 import Brand from "../components/Brand.astro";
 import Flyer from "../components/Flyer.astro";
-import { links, events, djs, sets, gallery, bookingEmail } from "../data/portal";
+import { links, events, djs, sets, gallery, bookingEmail, developerCredit } from "../data/portal";
 const categories = ['Todas', ...new Set(gallery.map(photo => photo.category))];
 ---
 <!doctype html>
@@ -40,9 +40,15 @@ const categories = ['Todas', ...new Set(gallery.map(photo => photo.category))];
           <a class="button primary" href="#agenda">Ver agenda e flyers <svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13 13 3M5 3h8v8"/></svg></a>
           <a class="button secondary" href="#sets"><span aria-hidden="true">▷</span> Ouvir sets</a>
         </div>
+        <ul class="hero-details">
+          <li><span aria-hidden="true">✳</span> 4 DJs, uma conexão</li>
+          <li><span aria-hidden="true">♪</span> Festas e encontros PVT</li>
+          <li><span aria-hidden="true">∿</span> Até o amanhecer</li>
+        </ul>
       </div>
+      <a class="hero-scroll" href="#agenda">A pista é o nosso ponto de encontro <span aria-hidden="true">⌄</span></a>
     </section>
-    <div class="genres" aria-label="Estilos musicais"><div class="shell"><span>EDM</span><span>TRANCE</span><span>PSYTRANCE</span><span>PROGRESSIVE</span></div></div>
+    <div class="genres" aria-label="Estilos musicais"><div class="shell"><span>EDM</span><span>TRANCE</span><span>PSYTRANCE</span><span>PROGRESSIVE</span><span>EXPERIÊNCIAS PVT</span><span>ATÉ O AMANHECER</span></div></div>
 
     <section class="shell section" id="agenda" aria-labelledby="agenda-title">
       <p class="eyebrow">Agenda</p>
@@ -50,12 +56,13 @@ const categories = ['Todas', ...new Set(gallery.map(photo => photo.category))];
       <p class="section-intro">As próximas datas e locais serão divulgados pelo coletivo. Veja abaixo os flyers conceituais desta prévia.</p>
       <div class="event-grid" id="flyers">
         {events.map((event, index) => (
-          <article class="card">
+          <article class="card event-card">
             <button class="flyer-button" type="button" data-dialog={`flyer-${index}`} aria-label={`Ampliar flyer de ${event.name}`}>
               <Flyer event={event}/>
             </button>
             <div class="card-body">
-              <p class="eyebrow">Em breve</p><h3>{event.name}</h3>
+              <h3>{event.name}</h3>
+              <p class="event-genre">{event.genre}</p>
               <p>{event.description}</p>
               <button class="text-button" type="button" data-dialog={`flyer-${index}`}>Ver flyer <svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13 13 3M5 3h8v8"/></svg></button>
             </div>
@@ -74,7 +81,10 @@ const categories = ['Todas', ...new Set(gallery.map(photo => photo.category))];
         <p class="eyebrow">O coletivo</p><h2 id="djs-title">4 amigos. Uma frequência.</h2>
         <p class="section-intro">O SunRisepvt nasceu da amizade de quatro DJs e da vontade de criar festas onde EDM, Trance e Psytrance dividem a mesma pista.</p>
         <div class="dj-grid">
-          {djs.map((dj,index) => <article class="card dj"><img src={`/media/dj-${index+1}.webp`} alt="" loading="lazy"/><div class="card-body"><h3>{dj.name}</h3><p>{dj.genre}</p></div></article>)}
+          {djs.map((dj,index) => <article class="dj">
+            <div class="dj-portrait"><img src={`/media/dj-${index+1}.webp`} alt="" loading="lazy"/></div>
+            <div class="card-body"><h3>{dj.name}</h3><p>{dj.genre}</p></div>
+          </article>)}
         </div>
         <p class="note">Nomes artísticos e retratos ilustrativos nesta prévia.</p>
       </div>
@@ -84,11 +94,14 @@ const categories = ['Todas', ...new Set(gallery.map(photo => photo.category))];
       <p class="eyebrow">Sets</p><h2 id="sets-title">Dê play na sua próxima viagem.</h2>
       <div class="set-grid">
         <div class="set-list" aria-label="Selecione um set">
-          {sets.map((set,index) => <button type="button" class="set-button" data-set={index} aria-controls={`set-${index}`} aria-pressed={index===0}><span aria-hidden="true">▷</span><span><strong>{set.title}</strong><small>{set.dj} · {set.style}</small></span></button>)}
+          {sets.map((set,index) => <button type="button" class="set-button" data-set={index} aria-controls={`set-${index}`} aria-pressed={index===0}><span class="set-cover"><img src={set.cover} alt="" loading="lazy"/><span class="set-play" aria-hidden="true">▷</span></span>
+            <span class="set-info"><strong>{set.title}</strong><small>{set.dj} · {set.style}</small></span></button>)}
         </div>
         {sets.map((set,index) => <article class="card set-panel" id={`set-${index}`} hidden={index!==0}>
-          <div class="record" aria-hidden="true"></div>
-          <p class="eyebrow">{set.style}</p><h3>{set.title}</h3><p>{set.dj}</p>
+          <div class="now-playing"><h3>{set.title}</h3><p>{set.dj} · {set.style}</p></div>
+          <div class="waveform" aria-hidden="true">
+            {Array.from({ length: 96 }, (_, bar) => <i style={`--bar-height:${20 + ((bar * 17) % 75)}%`}></i>)}
+          </div>
           {set.embed ? <iframe title={`Player de ${set.title}`} src={set.embed} loading="lazy" allow="autoplay; encrypted-media"></iframe> : <p class="note">Áudio ainda indisponível nesta prévia.</p>}
         </article>)}
       </div>
@@ -115,12 +128,18 @@ const categories = ['Todas', ...new Set(gallery.map(photo => photo.category))];
 
     <section class="shell section booking" id="contratar" aria-labelledby="booking-title">
       <div><p class="eyebrow">Contratação</p><h2 id="booking-title">A sua festa.<br/><em>A nossa frequência.</em></h2>
-      <p class="section-intro">Convide um DJ, leve os quatro para o line-up ou proponha uma parceria para produzir uma festa.</p></div>
+      <p class="section-intro">Do set individual à experiência completa. Levamos a energia da SunRisepvt para o seu evento.</p>
+      <ul class="booking-options">
+        <li>DJ set individual</li>
+        <li>Line-up completo com os 4 DJs</li>
+        <li>Produção e parceria de festas</li>
+      </ul>
+      <p class="note" id="booking-help">{bookingEmail ? 'O formulário abre um rascunho no seu aplicativo de e-mail.' : 'Formulário demonstrativo. Use dados fictícios.'}</p>
+      </div>
       <form class="card booking-form" id="booking" data-email={bookingEmail} aria-describedby="booking-help">
-        <p class="note" id="booking-help">{bookingEmail ? 'O formulário abre um rascunho no seu aplicativo de e-mail.' : 'Formulário demonstrativo. Use dados fictícios.'}</p>
+        <label>Nome ou produtora<input name="nome" placeholder="Como podemos te chamar?" autocomplete="name" required maxlength="120"/></label>
+        <label>E-mail ou WhatsApp<input name="contato" placeholder="Seu melhor contato" required maxlength="120"/></label>
         <div class="form-grid">
-          <label>Nome ou produtora<input name="nome" autocomplete="name" required maxlength="120"/></label>
-          <label>E-mail ou WhatsApp<input name="contato" required maxlength="120"/></label>
           <label>Data prevista<input name="data" type="date" required/></label>
           <label>Estilo musical<select name="estilo"><option>Misto</option><option>EDM</option><option>Trance</option><option>Psytrance</option></select></label>
         </div>
@@ -131,7 +150,28 @@ const categories = ['Todas', ...new Set(gallery.map(photo => photo.category))];
       </form>
     </section>
   </main>
-  <footer class="footer"><div class="shell footer-content"><Brand id="footer"/><nav aria-label="Rodapé">{links.map(([id,label]) => <a href={`#${id}`}>{label}</a>)}</nav><p>© SunRisepvt</p></div></footer>
+  <footer class="footer">
+    <div class="shell">
+      <div class="footer-content">
+        <div>
+          <Brand id="footer"/>
+          <p>Onde a noite se encontra com o amanhecer.</p>
+        </div>
+        <nav aria-label="Rodapé">{links.map(([id,label]) => <a href={`#${id}`}>{label}</a>)}</nav>
+      </div>
+      <div class="footer-bottom">
+        <small>© {new Date().getFullYear()} SunRisepvt. Todos os direitos reservados.</small>
+        <div class="developer-credit">
+          <span>Desenvolvido por</span>
+          {developerCredit.url ? (
+            <a href={developerCredit.url}>
+              {developerCredit.logo ? <img src={developerCredit.logo} alt={developerCredit.name} loading="lazy"/> : developerCredit.name}
+            </a>
+          ) : developerCredit.logo ? <img src={developerCredit.logo} alt={developerCredit.name} loading="lazy"/> : <strong>{developerCredit.name}</strong>}
+        </div>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
 
