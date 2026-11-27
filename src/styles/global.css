@@ -20,8 +20,8 @@ nav a:hover{color:var(--amber)}
 @keyframes frequency{from{transform:scaleY(.7)}to{transform:scaleY(1.13)}}
 .menu{display:none;padding:.55rem .8rem;border:1px solid var(--line);border-radius:.5rem}
 .button{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:3rem;padding:.65rem 1.15rem;border-radius:.65rem;font-size:.88rem;font-weight:750;transition:filter .2s,border-color .2s;cursor:pointer}
-.primary{background:linear-gradient(105deg,#ff5e36,#ffb800);color:#170b13;box-shadow:0 8px 30px #ff5e3633}
-.primary:hover{filter:brightness(1.15)}
+.primary{background:linear-gradient(105deg,#b43819,#985500);color:#fff;box-shadow:0 8px 30px #ff5e3633}
+.primary:hover{filter:brightness(1.08)}
 .secondary{border:1px solid #695677;background:#150e24d9}
 .secondary:hover{border-color:var(--violet)}
 .hero{min-height:clamp(36rem,76svh,54rem);display:grid;align-items:center;position:relative;isolation:isolate;overflow:hidden}
