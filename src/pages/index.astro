@@ -196,7 +196,7 @@ const categories = ['Todas', ...new Set(gallery.map(photo => photo.category))];
         <div class="developer-credit">
           <span>Desenvolvido por</span>
           {developerCredit.url ? (
-            <a href={developerCredit.url}>
+            <a href={developerCredit.url}target="_blank" rel="noopener noreferrer">
               {developerCredit.logo ? <img src={developerCredit.logo} alt={developerCredit.name} loading="lazy"/> : developerCredit.name}
             </a>
           ) : developerCredit.logo ? <img src={developerCredit.logo} alt={developerCredit.name} loading="lazy"/> : <strong>{developerCredit.name}</strong>}
