@@ -1,43 +1,23 @@
-# Astro Starter Kit: Minimal
+# SunRisepvt
+
+Portal em português para um coletivo de quatro DJs. Construído com Astro, TypeScript e Tailwind CSS. A identidade Frequência usa quatro barras animadas em SVG e CSS.
+
+## Desenvolvimento
 
 ```sh
-npm create astro@latest -- --template minimal
+npm ci
+npm run dev
+npm run build
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+No PowerShell, use `npm.cmd` caso o atalho `npm` esteja indisponível.
 
-## 🚀 Project Structure
+## Conteúdo e integrações
 
-Inside of your Astro project, you'll see the following folders and files:
+Atualize `src/data/portal.ts` com os dados oficiais. Os flyers, retratos, nomes de apresentação e fotos atuais são ilustrativos. Cada set pode receber uma URL oficial de incorporação no campo `embed`. O formulário simula o envio enquanto `bookingEmail` estiver vazio. Com o e-mail oficial, ele abre um rascunho no aplicativo de e-mail do visitante.
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+Na Vercel, importe o repositório com o preset Astro. O build produz `dist/`. A branch de revisão pode ser usada como Preview.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Crédito de desenvolvimento
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Coloque sua logo em `public/media/` e preencha `developerCredit.logo` em `src/data/portal.ts` com o caminho público, como `/media/logo-dev.png`. Preencha `developerCredit.url` para vincular o crédito ao seu portfólio.

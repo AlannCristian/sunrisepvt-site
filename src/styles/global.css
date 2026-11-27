@@ -1,1 +1,334 @@
 @import "tailwindcss";
+:root{color-scheme:dark;--night:#0b0813;--surface:#150e24;--violet:#9d4edd;--orange:#ff704e;--amber:#ffb800;--muted:#b9b2c6;--line:#39284d}
+html{scroll-behavior:smooth}
+body{background:var(--night);color:#f3f4f6;font-family:Inter,system-ui,sans-serif}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid #00f5d4;outline-offset:4px}
+[id]{scroll-margin-top:6rem}
+.shell{width:min(100% - 3rem, 76rem);margin-inline:auto}
+.skip{position:fixed;top:.5rem;left:.5rem;z-index:20;background:var(--night);padding:.7rem;transform:translateY(-200%)}
+.skip:focus{transform:none}
+.header{position:sticky;top:0;z-index:10;background:#0b0813f2;border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
+.nav,.footer-content{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:1rem}
+nav{display:flex;align-items:center;gap:clamp(.7rem,2vw,1.5rem);flex-wrap:wrap;color:var(--muted);font-size:.875rem}
+nav a:hover{color:var(--amber)}
+.brand{display:inline-flex;align-items:center;gap:.55rem;font-weight:850;font-size:1.3rem;white-space:nowrap}
+.brand svg{width:2.65rem;height:1.65rem}
+.accent{color:var(--orange)}
+.bar{transform-box:fill-box;transform-origin:center bottom;animation:frequency 1.15s ease-in-out infinite alternate}
+.bar:nth-child(3){animation-delay:-.5s}.bar:nth-child(4){animation-delay:-.8s}.bar:nth-child(5){animation-delay:-.25s}
+@keyframes frequency{from{transform:scaleY(.7)}to{transform:scaleY(1.13)}}
+.menu{display:none;padding:.55rem .8rem;border:1px solid var(--line);border-radius:.5rem}
+.button{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:3rem;padding:.65rem 1.15rem;border-radius:.65rem;font-size:.88rem;font-weight:750;transition:filter .2s,border-color .2s;cursor:pointer}
+.primary{background:linear-gradient(105deg,#b43819,#985500);color:#fff;box-shadow:0 8px 30px #ff5e3633}
+.primary:hover{filter:brightness(1.08)}
+.secondary{border:1px solid #695677;background:#150e24d9}
+.secondary:hover{border-color:var(--violet)}
+.hero{min-height:clamp(36rem,76svh,54rem);display:grid;align-items:center;position:relative;isolation:isolate;overflow:hidden}
+.hero-image,.hero::after{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.hero-image{object-fit:cover;object-position:center 65%;animation:scene 12s ease-out both}
+.hero::after{content:"";background:linear-gradient(0deg,var(--night),transparent 43%),linear-gradient(90deg,#0b0813f2 0%,#0b0813a6 44%,#0b08131a 100%)}
+@keyframes scene{from{transform:scale(1.06)}to{transform:scale(1)}}
+.hero-content{padding-block:4rem;animation:arrival .7s ease-out both}
+@keyframes arrival{from{opacity:0;transform:translateY(.8rem)}to{opacity:1;transform:none}}
+.eyebrow{font-size:.72rem;font-weight:750;letter-spacing:.15em;text-transform:uppercase;color:var(--orange)}
+.hero-label{display:inline-flex;align-items:center;gap:.45rem;flex-wrap:wrap;border:1px solid #ff704e66;border-radius:.3rem;background:#0b0813b0;padding:.6rem .75rem}
+.hero-label i{width:.42rem;height:.42rem;border-radius:50%;background:#00f5d4;box-shadow:0 0 11px #00f5d4}
+h1,h2,h3,.brand{font-family:"Chakra Petch",system-ui,sans-serif}
+h1{font-size:clamp(2.35rem,5.25vw,4.1rem);line-height:1.08;letter-spacing:-.055em;font-weight:800;margin-top:1.25rem}
+em{font-style:normal;color:var(--amber);background:linear-gradient(100deg,#ff704e,#ffb800);background-clip:text;-webkit-text-fill-color:transparent}
+.intro,.section-intro{color:var(--muted);line-height:1.7;max-width:34rem;margin-top:1.2rem}
+.actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.6rem}
+.genres,.band,.footer{border-block:1px solid var(--line);background:#100b1a}
+.section{padding-block:clamp(3.5rem,5vw,5rem)}
+h2{font-size:clamp(1.9rem,3.2vw,2.3rem);line-height:1.06;letter-spacing:-.045em;font-weight:800;margin-top:.55rem}
+h3{font-size:1.28rem;font-weight:750}
+.event-grid,.dj-grid,.gallery-grid,.set-grid,.booking{display:grid;gap:1rem}
+.event-grid,.dj-grid,.set-grid,.gallery-grid{margin-top:2rem}
+.event-grid,.gallery-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.dj-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card,.set-button{background:var(--surface);border:1px solid var(--line);border-radius:1rem;min-width:0}
+.card-body,.set-panel,.booking-form{padding:1.25rem}
+.card-body p:not(.eyebrow),.set-panel p:not(.eyebrow),.note{color:var(--muted);font-size:.9rem;margin-top:.5rem}
+.flyer-button{display:block;width:100%;cursor:zoom-in}
+.text-button{color:var(--amber);margin-top:.9rem;cursor:pointer}
+.booking{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:1.5rem}
+.booking-form{display:grid;gap:1rem}
+.set-button{display:block;overflow:hidden;text-align:left;cursor:pointer}
+.set-button[aria-pressed=true],.chip[aria-pressed=true]{border-color:var(--orange);background:#2a1630}
+iframe{width:100%;min-height:180px;border:0;margin-top:1rem}
+.filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.25rem}
+.chip{border:1px solid var(--line);border-radius:99px;padding:.5rem .8rem;cursor:pointer}
+.gallery-grid figure{min-width:0;margin:0}
+.gallery-grid figure > button{position:relative;display:block;width:100%;border-radius:1rem;overflow:hidden;cursor:zoom-in;text-align:left}
+.gallery-grid figure > button img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .25s}
+.gallery-grid figure > button:hover img{transform:scale(1.04)}
+.gallery-grid figure > button span{position:absolute;bottom:0;inset-inline:0;background:#0b0813d9;padding:.65rem;font-size:.87rem}
+dialog{position:fixed;inset:0;margin:auto;width:min(94vw,48rem);max-height:90dvh;overflow:auto;background:var(--surface);color:inherit;border:1px solid var(--line);border-radius:1rem;padding:.8rem;animation:arrival .22s ease-out}
+dialog::backdrop{background:#07040be8}
+dialog .flyer{min-height:min(55vh,26rem);border-radius:.65rem}
+dialog img{width:100%;max-height:68dvh;object-fit:contain}
+.dialog-caption{color:var(--muted);padding:.65rem}
+.close{display:flex;margin:0 0 .6rem auto;min-height:2.5rem;padding:.25rem .8rem;font-size:1.3rem}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}
+form label{display:grid;gap:.35rem;font-size:.87rem}
+input,select,textarea{width:100%;min-width:0;padding:.65rem;border:1px solid var(--line);border-radius:.5rem;background:var(--night);color:inherit}
+.footer-content{flex-wrap:wrap}
+.footer-content p{color:var(--muted);font-size:.85rem}
+@media(max-width:56rem){
+  .nav{flex-wrap:wrap}.nav-cta{display:none}.menu{display:block}
+  #nav-links{width:100%;align-items:stretch}
+  #nav-links.enhanced{display:none}
+  .menu[aria-expanded=true]+#nav-links{display:grid;grid-template-columns:repeat(2,1fr)}
+  #nav-links a{padding:.5rem 0}
+  .event-grid,.gallery-grid,.dj-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:36rem){
+  .shell{width:calc(100% - 2rem)}
+  .event-grid,.gallery-grid,.set-grid,.booking,.form-grid{grid-template-columns:1fr}
+  .hero::after{background:linear-gradient(90deg,#0b0813e6,#0b08136b),linear-gradient(0deg,var(--night),transparent 70%)}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+
+.text-button svg{display:inline-block;vertical-align:middle;margin-inline-start:.25rem}
+
+/* Opening details and section rhythm */
+.hero-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 1.5rem;
+  margin-top: 2rem;
+  color: var(--muted);
+  font-size: .76rem;
+}
+.hero-details span,
+.hero-scroll span { color: var(--orange); margin-inline: .25rem; }
+.hero-scroll {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.75rem;
+  color: var(--muted);
+  font-size: .62rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.genres { background: var(--night); }
+.genres .shell {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  align-items: stretch;
+  min-height: 4.5rem;
+  color: var(--muted);
+  font-size: .7rem;
+  font-weight: 600;
+}
+.genres .shell > span {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: .6rem .5rem;
+  text-align: center;
+}
+.genres .shell > span + span::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: .875rem;
+  height: .875rem;
+  transform: translate(-50%, -50%);
+  background: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 2v12M2 8h12M3.75 3.75l8.5 8.5m0-8.5-8.5 8.5' fill='none' stroke='%23ff5e36' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+@media (max-width: 42rem) {
+  .genres .shell { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .genres .shell > span:nth-child(4)::before { display: none; }
+}
+.band { background: var(--night); }
+.section > .eyebrow::before, .booking > div > .eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 2px;
+  margin-inline-end: .5rem;
+  vertical-align: middle;
+  background: var(--orange);
+}
+
+/* Event posters and artist portraits */
+.event-grid, .dj-grid { gap: 1.35rem; }
+.event-card {
+  border-radius: .75rem;
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+.event-card:focus-within {
+  border-color: var(--orange);
+}
+.flyer {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-content: end;
+  min-height: clamp(12rem, 19vw, 15rem);
+  padding: 1.25rem;
+  overflow: hidden;
+  border-radius: .7rem .7rem 0 0;
+  background: var(--surface);
+  text-align: left;
+}
+.flyer img, .flyer::after {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.flyer img { object-fit: cover; transition: transform .45s ease; }
+.flyer::after {
+  content: "";
+  background: linear-gradient(0deg, #08040def 4%, transparent 73%),
+    linear-gradient(125deg, color-mix(in srgb, var(--flyer-color), transparent 78%), transparent);
+}
+.flyer-status {
+  position: absolute;
+  top: .9rem;
+  right: .9rem;
+  padding: .25rem .5rem;
+  border: 1px solid #ffb80070;
+  border-radius: .3rem;
+  background: #0b0813df;
+  color: var(--amber);
+  font-size: .68rem;
+}
+.flyer-title strong {
+  display: block;
+  max-width: 11ch;
+  font: 700 clamp(1.45rem, 2.65vw, 2.15rem)/1.03 "Chakra Petch", sans-serif;
+  text-transform: uppercase;
+}
+.flyer-title small {
+  display: block;
+  margin-top: .55rem;
+  font-size: .65rem;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+}
+.event-card .text-button {
+  display: block;
+  width: 100%;
+  padding-top: .85rem;
+  border-top: 1px solid var(--line);
+  color: var(--orange);
+  text-align: right;
+  font-size: .82rem;
+}
+.dj { min-width: 0; border-bottom: 1px solid var(--line); }
+.dj-portrait {
+  overflow: hidden;
+  border-radius: .55rem;
+  background: var(--surface);
+}
+.dj-portrait img {
+  width: 100%;
+  aspect-ratio: 7/8;
+  object-fit: cover;
+  object-position: center 19%;
+  transition: transform .45s ease, filter .35s ease;
+}
+.dj .card-body { padding: .9rem 0; }
+.dj .card-body p:not(.eyebrow) { color: var(--orange); }
+.dj h3 { transition: color .25s ease; }
+@media (hover: hover) {
+  .event-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--orange);
+    box-shadow: 0 10px 28px #ff5e3624;
+  }
+  .event-card:hover .flyer-button img, .flyer-button:focus-visible img { transform: scale(1.06); }
+  .dj:hover img { transform: scale(1.075); filter: brightness(1.14); }
+  .dj:hover h3 { color: var(--orange); }
+}
+
+/* Set artwork and selected-set display */
+.set-grid { grid-template-columns: minmax(0, 1fr); }
+.set-list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+.set-cover { display: block; position: relative; isolation: isolate; overflow: hidden; }
+.set-cover img {
+  width: 100%;
+  aspect-ratio: 2.25/1;
+  object-fit: cover;
+  transition: transform .35s ease;
+}
+.set-cover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, var(--surface), transparent 95%);
+}
+.set-play {
+  position: absolute;
+  left: 1rem;
+  bottom: .25rem;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 2.3rem;
+  height: 2.3rem;
+  border: 1px solid #ffffff66;
+  border-radius: 50%;
+  background: #0b0813ad;
+}
+.set-button[aria-pressed=true] .set-play { background: #ff662b; color: var(--night); }
+.set-button:hover .set-cover img { transform: scale(1.06); }
+.set-info { display: block; padding: .65rem 1rem 1.15rem; }
+.set-info small { display: block; color: var(--muted); margin-top: .3rem; }
+.set-panel {
+  display: grid;
+  align-items: center;
+  grid-template-columns: auto minmax(0,1fr) auto;
+  gap: 1rem;
+  border-width: 1px 0;
+  border-radius: 0;
+  background: none;
+}
+.set-panel .note { margin: 0; }
+.set-panel iframe { grid-column: 1/-1; }
+.waveform { display: flex; align-items: center; gap: 3px; height: 2.6rem; overflow: hidden; }
+.waveform i { flex: 1 0 2px; height: var(--bar-height); border-radius: 3px; background: var(--violet); }
+.waveform i:nth-child(3n) { background: var(--orange); }
+
+/* Contact and developer credit */
+.booking { gap: clamp(1.5rem,5vw,4rem); }
+.booking-options { display: grid; gap: .65rem; margin: 1.4rem 0; }
+.booking-options li::before { content: "♪"; color: var(--orange); margin-inline-end: .75rem; }
+.booking-form { border: 0; background: transparent; padding: 0; }
+.booking-form label { gap: .45rem; }
+.booking-form input, .booking-form select, .booking-form textarea { background: var(--surface); }
+.booking-form [role=status]:empty { display: none; }
+.footer-content { padding-block: 2.5rem; }
+.footer-content p { margin-top: .65rem; }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .75rem 1rem;
+  padding-block: 1.2rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .78rem;
+}
+.developer-credit { display: flex; align-items: center; gap: .55rem; }
+.developer-credit strong { color: #f3f4f6; }
+.developer-credit img { width: auto; max-width: 7rem; max-height: 1.85rem; object-fit: contain; }
+@media (max-width: 56rem) {
+  .set-list { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .set-panel { grid-template-columns: minmax(0,1fr); }
+  .hero-scroll { display: none; }
+}
+@media (max-width: 36rem) {
+  .set-list { grid-template-columns: minmax(0,1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .event-card:hover, .event-card:hover .flyer-button img, .flyer-button:focus-visible img,
+  .dj:hover img, .set-button:hover .set-cover img, .gallery-grid figure button:hover img { transform: none; }
+}
