@@ -41,9 +41,18 @@ const categories = ['Todas', ...new Set(gallery.map(photo => photo.category))];
           <a class="button secondary" href="#sets"><span aria-hidden="true">▷</span> Ouvir sets</a>
         </div>
         <ul class="hero-details">
-          <li><span aria-hidden="true">✳</span> 4 DJs, uma conexão</li>
-          <li><span aria-hidden="true">♪</span> Festas e encontros PVT</li>
-          <li><span aria-hidden="true">∿</span> Até o amanhecer</li>
+          <li>
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2m20 0v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/><circle cx="9" cy="7" r="4"/></svg>
+            4 DJs, uma conexão
+          </li>
+          <li>
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            Festas e encontros PVT
+          </li>
+          <li>
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M2 10v4m4-7v10m4-14v18m4-16v14m4-11v8m4-6v4"/></svg>
+            Até o amanhecer
+          </li>
         </ul>
       </div>
       <a class="hero-scroll" href="#agenda">A pista é o nosso ponto de encontro <span aria-hidden="true">⌄</span></a>
@@ -238,3 +247,21 @@ const categories = ['Todas', ...new Set(gallery.map(photo => photo.category))];
     window.location.href = `mailto:${email}?subject=${encodeURIComponent('Contratação SunRisepvt')}&body=${encodeURIComponent(body)}`;
   });
 </script>
+
+<style>
+  .hero-details li {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+  }
+  .hero-details svg {
+    flex: none;
+    width: .9rem;
+    height: .9rem;
+    fill: none;
+    stroke: var(--orange);
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+</style>
