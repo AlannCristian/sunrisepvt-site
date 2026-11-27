@@ -6,6 +6,13 @@ import "../styles/global.css";
 import Brand from "../components/Brand.astro";
 import Flyer from "../components/Flyer.astro";
 import { links, events, djs, sets, gallery, bookingEmail, developerCredit } from "../data/portal";
+// Preencha com os endereços oficiais do coletivo.
+const socialLinks: { name: string; url?: string; icon: string }[] = [
+  { name: "Instagram", icon: "M8 3h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5Zm8 9a4 4 0 1 0-8 0 4 4 0 0 0 8 0Zm1.5-5.5h.01" },
+  { name: "TikTok", icon: "M14 4v12a4 4 0 1 1-4-4m4-8c0 3 2 5 5 5" },
+  { name: "SoundCloud", icon: "M3 10v4m3-7v10m3-13v16m3-15v14m3-11v8m3-6v4m3-3v2" },
+  { name: "YouTube", icon: "M3 9a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3Zm7 0 5 3-5 3Z" },
+];
 const categories = ['Todas', ...new Set(gallery.map(photo => photo.category))];
 ---
 <!doctype html>
@@ -167,6 +174,21 @@ const categories = ['Todas', ...new Set(gallery.map(photo => photo.category))];
           <p>Onde a noite se encontra com o amanhecer.</p>
         </div>
         <nav aria-label="Rodapé">{links.map(([id,label]) => <a href={`#${id}`}>{label}</a>)}</nav>
+        <ul class="footer-socials" aria-label="Redes sociais">
+          {socialLinks.map(({name, url, icon}) => {
+            const IconTag = url ? "a" : "span";
+            return (
+              <li>
+                <IconTag href={url} class="social-icon" aria-label={url ? name : undefined} title={url ? name : `${name} · link em breve`}>
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                    <path d={icon}/>
+                  </svg>
+                  {!url && <span class="sr-only">{name} · link em breve</span>}
+                </IconTag>
+              </li>
+            );
+          })}
+        </ul>
       </div>
       <div class="footer-bottom">
         <small>© {new Date().getFullYear()} SunRisepvt. Todos os direitos reservados.</small>
@@ -263,5 +285,24 @@ const categories = ['Todas', ...new Set(gallery.map(photo => photo.category))];
     stroke-width: 1.75;
     stroke-linecap: round;
     stroke-linejoin: round;
+  }
+  .footer-socials {
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+  }
+  .social-icon {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: .4rem;
+    color: #f3f4f6;
+  }
+  .social-icon svg { width: 1rem; height: 1rem; }
+  a.social-icon:hover, a.social-icon:focus-visible { color: var(--orange); }
+  .developer-credit img { max-width: 5rem; max-height: 1.125rem; }
+  @media (max-width: 42rem) {
+    .footer-content { flex-direction: column; align-items: flex-start; }
   }
 </style>
