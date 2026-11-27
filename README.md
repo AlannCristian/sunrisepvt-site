@@ -90,3 +90,48 @@ Importe o repositório com o preset **Astro**, use `npm run build` como comando 
 ---
 
 Desenvolvimento por **AO Dev**.
+
+## Painel de conteúdo com Sanity
+
+O Studio em `studio/` permite cadastrar **Eventos e flyers**, **Sets** e
+**Galeria**. O Astro consulta somente documentos publicados durante o build.
+Com o Sanity habilitado, as três seções exibem o conteúdo publicado no painel.
+Se não houver documentos, exibem mensagens de lista vazia. Preencha o painel
+antes de conectar a produção.
+
+### Configuração inicial
+
+1. Crie um projeto no [Sanity Manage](https://www.sanity.io/manage) e anote o
+   **Project ID**. Use um dataset público, como `production`, para esse conteúdo
+   público do portal.
+2. Copie `studio/.env.example` para `studio/.env` e preencha
+   `SANITY_STUDIO_PROJECT_ID` e `SANITY_STUDIO_DATASET`.
+3. Na raiz do repositório, rode `npm.cmd --prefix studio install` e
+   `npm.cmd --prefix studio run dev` no Windows. No macOS/Linux, use `npm`.
+   Abra o endereço exibido e entre com sua conta Sanity.
+4. Cadastre e publique pelo menos um evento, um set e uma foto para testar.
+   Em Sets, cole o endereço `src` de **Compartilhar → Incorporar** no SoundCloud.
+5. Copie `.env.example` para `.env` na raiz e preencha `SANITY_PROJECT_ID`
+   e `SANITY_DATASET` com os mesmos valores. Rode `npm.cmd run build` para
+   verificar a integração.
+
+Os valores de Project ID e dataset identificam o projeto. O site não precisa
+de token de escrita. Se o Sanity estiver configurado e a consulta falhar, o
+build falha para preservar o último deploy bem-sucedido.
+
+### Publicação na Vercel
+
+Adicione `SANITY_PROJECT_ID` e `SANITY_DATASET` às variáveis do ambiente
+desejado e faça um novo deploy. Após conferir em Preview, use os mesmos valores
+na produção. Para automatizar, crie um **Deploy Hook** da Vercel para a branch
+`master` e use a URL em um webhook do Sanity para criação, atualização e
+exclusão de documentos publicados, com este filtro:
+
+```groq
+_type in ["portalEvent", "portalSet", "portalPhoto"] &&
+!(_id in path("drafts.**"))
+```
+
+Mantenha a URL do Deploy Hook fora do repositório. Para disponibilizar o Studio
+fora do seu PC, execute o script `deploy` de `studio/` após fazer login no
+Sanity CLI.

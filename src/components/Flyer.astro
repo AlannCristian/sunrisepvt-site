@@ -1,11 +1,14 @@
 ---
-import { events } from "../data/portal";
+import type { PortalEvent } from "../lib/content";
 
 interface Props {
-  event: (typeof events)[number];
+  event: PortalEvent;
 }
 const { event } = Astro.props;
 ---
+{event.uploadedFlyer ? (
+  <img class="uploaded-flyer" src={event.cover} alt={`Flyer de ${event.name}`} loading="lazy"/>
+) : (
 <div class="flyer" style={`--flyer-color:${event.color}`}>
   <img src={event.cover} alt="" loading="lazy"/>
   <span class="flyer-status">Em breve</span>
@@ -14,3 +17,19 @@ const { event } = Astro.props;
     <small>{event.edition}</small>
   </div>
 </div>
+)}
+
+<style>
+  .uploaded-flyer {
+    display: block;
+    width: 100%;
+    height: clamp(12rem, 19vw, 15rem);
+    object-fit: cover;
+    border-radius: .7rem .7rem 0 0;
+  }
+  :global(dialog) .uploaded-flyer {
+    height: auto;
+    object-fit: contain;
+    border-radius: .65rem;
+  }
+</style>
