@@ -2,16 +2,103 @@
 import "../styles/global.css";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1 class="text-5xl font-bold text-[#FF5E36]">SunRisepvt</h1>
-	</body>
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SunRisepvt | Coletivo de música eletrônica</title>
+  </head>
+
+  <body class="bg-[#0B0813] text-[#F3F4F6]">
+    <header class="border-b border-white/10">
+      <div class="mx-auto flex max-w-6xl items-center px-6 py-4">
+        <a href="/" class="inline-flex items-center gap-3 text-xl font-bold">
+          <svg
+            viewBox="0 0 72 40"
+            class="h-8 w-14"
+            aria-hidden="true"
+          >
+            <defs>
+              <linearGradient id="sunrise" x2="0%" y2="100%">
+                <stop stop-color="#FFB800" />
+                <stop offset="0.55" stop-color="#FF5E36" />
+                <stop offset="1" stop-color="#9D4EDD" />
+              </linearGradient>
+
+              <mask id="equalizer">
+                <rect width="72" height="40" fill="white" />
+                <rect class="bar" x="15" y="25" width="8" height="15" />
+                <rect class="bar" x="26" y="17" width="8" height="23" />
+                <rect class="bar" x="37" y="11" width="8" height="29" />
+                <rect class="bar" x="48" y="22" width="8" height="18" />
+              </mask>
+            </defs>
+
+            <path
+              d="M 2 38 A 34 34 0 0 1 70 38 Z"
+              fill="url(#sunrise)"
+              mask="url(#equalizer)"
+            />
+          </svg>
+
+          <span>SunRise<span class="text-[#FF5E36]">pvt</span></span>
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section aria-labelledby="hero-title" class="hero grid min-h-[75svh] items-center">
+        <div class="mx-auto w-full max-w-6xl px-6 py-20">
+          <p class="text-sm font-semibold tracking-widest text-[#FFB800]">
+            EDM · TRANCE · PSYTRANCE
+          </p>
+
+          <h1
+  id="hero-title"
+  class="mt-6 max-w-2xl text-4xl leading-[1.06] font-extrabold tracking-tight sm:text-6xl lg:text-7xl"
+>
+  Onde a noite<br class="hidden lg:block" />
+  se encontra com<br class="hidden lg:block" />
+  <span class="bg-linear-to-r from-[#FF5E36] to-[#FFB800] bg-clip-text text-transparent">
+    o amanhecer.
+  </span>
+</h1>
+
+          <p class="mt-6 max-w-md text-base leading-relaxed text-[#D4D4D8] sm:text-lg">
+            Quatro amigos, quatro DJs. Um coletivo de música eletrônica que
+            reúne a galera na pista até o sol nascer.
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>
+
+<style>
+  .hero {
+    background:
+      linear-gradient(90deg, #0b0813 0%, #0b0813cc 40%, #0b081359 100%),
+      url("/sunrise-stage.jpg") center 60% / cover no-repeat;
+  }
+
+  .bar {
+    transform-box: fill-box;
+    transform-origin: center bottom;
+    animation: equalizer 1.4s ease-in-out infinite alternate;
+  }
+
+  .bar:nth-of-type(2) { animation-delay: -200ms; }
+  .bar:nth-of-type(3) { animation-delay: -650ms; }
+  .bar:nth-of-type(4) { animation-delay: -400ms; }
+  .bar:nth-of-type(5) { animation-delay: -850ms; }
+
+  @keyframes equalizer {
+    from { transform: scaleY(0.65); }
+    to { transform: scaleY(1.15); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bar { animation: none; }
+  }
+</style>
